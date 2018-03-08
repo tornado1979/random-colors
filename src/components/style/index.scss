@@ -1,0 +1,135 @@
+// Required
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+// Optional
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/images";
+@import "node_modules/bootstrap/scss/code";
+@import "node_modules/bootstrap/scss/grid";
+
+// Your variable overrides
+$body-bg1: #000;
+$body-bg2: #fbb203;
+$body-bg3: #fff876;
+$body-bg4: #123456;
+$body-bg5: #fff;
+$body-color: #987654;
+
+$box-color: #aaffbb;
+$box-width: 400px;
+$box-height: 200px;
+$circle-default-color: #fbb203;
+$circlediameter: 60px;
+
+body{
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /*centers items on the line (the x-axis by default)*/
+  align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin border($color) {
+  -webkit-border: 1px solid $color;
+     -moz-border: 1px solid $color;
+      -ms-border: 1px solid $color;
+          border: 1px solid $color;
+}
+
+@mixin cursor($cursor-type) {
+  cursor: $cursor-type;
+}
+
+@mixin position($top, $left) {
+  left: -webit-calc($left - #{$circlediameter});
+  left:   -moz-calc($left - #{$circlediameter});
+  left:      calc(#{$left} - #{$circlediameter});
+  top:  -webit-calc($top - #{$circlediameter});
+  top:    -moz-calc($top - #{$circlediameter});
+  top:        calc(#{$top} - #{$circlediameter});
+}
+
+@keyframes example {
+  0%   {left:0px; top:0px;};
+  25%  {left:200px; top:0px;};
+  50%  {left:200px; top:200px;};
+  75%  {left:0px; top:200px;};
+  100% {left:0px; top:0px;};
+}
+
+.mybox {
+  @include border-radius(10px);
+  @include border(#fbb333);
+  display: inline-block;
+  background: $box-color;
+  height: $box-height;
+  width: $box-width;
+}
+
+.mycircle {
+  @include border-radius(50%);
+  @include border(blue);
+  @include position(0, 0);
+  height: $circlediameter;
+  position: relative;
+  width: $circlediameter;
+  -webkit-animation-duration: 4s;
+  
+  &:hover {
+    @include cursor(pointer);
+  }
+
+  &.position2 {
+    @include position(0, $box-width);
+  }
+
+  &.position3 {
+    @include position($box-height, $box-width);
+  }
+
+  &.position4 {
+    @include position($box-height, 0);
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  body {
+    background: $body-bg1;
+    color: $body-color;
+  }
+ }
+@include media-breakpoint-up(sm) {
+  body {
+    background: $body-bg2;
+    color: $body-color;
+  }
+ }
+@include media-breakpoint-up(md) {
+  body {
+    background: $body-bg3;
+    color: $body-color;
+  }
+ }
+@include media-breakpoint-up(lg) {
+  body {
+    background: $body-bg4;
+    color: $body-color;
+  }
+ }
+@include media-breakpoint-up(xl) {
+  body {
+    background: $body-bg5;
+    color: $body-color;
+  }
+ }
